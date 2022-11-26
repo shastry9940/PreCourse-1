@@ -1,50 +1,49 @@
-class Stack { 
+//Time complexity 0(1), space complexity o(1)
+
+public class Stack { 
     //Please read sample.java file before starting.
   //Kindly include Time and Space complexity at top of each file
     static final int MAX = 1000; 
-    int top = -1;
-    int a[] = new int[MAX]; // Maximum size of Stack
-    public int counter; //to know the number of elements in the array
+    int top;
+    int a[]; // Maximum size of Stack
+    
+
+    Stack()
+    { 
+       //Initialize your constructor
+    //MAX = 1000; 
+    top = -1;
+    a = new int[MAX];
+    } 
   
     boolean isEmpty() 
     {
-        if ( a == null || counter == 0) return false;
-        }
+        if (top == -1) return true;
+        else return false;
     }
-
-
-    Stack(int counter)
-    { 
-       //Initialize your constructor
-        this.counter = counter;
-        this.a = new a[MAX];
-    } 
   
-    boolean push(int x) 
+    boolean isFull()
     {
-        if(a.length > MAX) return false; //overflow check
-        else { //code to push
-           a[counter-1] = x;
-           counter += 1;
-        }
+        if (top == MAX - 1) return true;
+        else return false;
+    }
+    
+    int push(int x) 
+    {
+        if(isFull()) return -1;
+        else return a[++top]=x;
     }
 
   
     int pop() 
     { 
-        if (a == null || counter == 0)  return -1;//If empty return 0 and print " Stack Underflow"
-        else { //code to pop
-            counter -= 1;
-            return a[counter];
-        }
+        if (isEmpty()) return -1;
+        else return a[top--];
     } 
   
     int peek() 
     { 
-       if (a== null || counter==0) return -1;
-       else {
-           return a[counter - 1];
-       }//Write your code here
+           return a[top];
     } 
 } 
   

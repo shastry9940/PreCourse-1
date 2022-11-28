@@ -1,61 +1,68 @@
-class Stack { 
-    //Please read sample.java file before starting.
-  //Kindly include Time and Space complexity at top of each file
-    static final int MAX = 1000; 
-    int top = -1;
-    int a[] = new int[MAX]; // Maximum size of Stack
-    public int counter; //to know the number of elements in the array
-  
-    boolean isEmpty() 
-    {
-        if ( a == null || counter == 0) return false;
-        }
+//Executed the code successfully
+// Time complexity = O(1) and space complexity = O(1)
+import java.io.*;
+import java.util.*;
+ 
+public class Stack {
+ 
+    private int arr[];
+    private int size;
+    private int counter;
+ 
+    public Stack(int size) {
+        this.size = size;
+        arr = new int[size];
+        this.counter = 0;
     }
-
-
-    Stack(int counter)
-    { 
-       //Initialize your constructor
-        this.counter = counter;
-        this.a = new a[MAX];
-    } 
-  
-    boolean push(int x) 
-    {
-        if(a.length > MAX) return false; //overflow check
-        else { //code to push
-           a[counter-1] = x;
-           counter += 1;
+ 
+    public void push(int data) {
+ 
+        if (isFull()) {
+            throw new StackOverflowError("Stack is full");
         }
+ 
+        arr[counter] = data;
+        counter++;
     }
-
-  
-    int pop() 
-    { 
-        if (a == null || counter == 0)  return -1;//If empty return 0 and print " Stack Underflow"
-        else { //code to pop
-            counter -= 1;
-            return a[counter];
+ 
+    public int pop() {
+ 
+        if (isEmpty()) {
+            throw new EmptyStackException();
         }
-    } 
-  
-    int peek() 
-    { 
-       if (a== null || counter==0) return -1;
-       else {
-           return a[counter - 1];
-       }//Write your code here
-    } 
-} 
+        return arr[--counter];
+    }
+ 
+    public boolean isEmpty() {
+        if (counter == 0) {
+            return true;
+        }
+        return false;
+    }
+ 
+    public boolean isFull() {
+        if (counter == size) {
+            return true;
+        }
+        return false;
+    }
+ 
+    public int size() {
+        return counter;
+    }
+ 
   
 // Driver code 
-class Main { 
+ 
     public static void main(String args[]) 
     { 
-        Stack s = new Stack(); 
+        Stack s = new Stack(10); 
         s.push(10); 
         s.push(20); 
         s.push(30); 
-        System.out.println(s.pop() + " Popped from stack"); 
+        System.out.println(s.pop() + " Popped from stack");
+        s.push(40);
+        for (int i=0 ; i<10; i++)
+            System.out.println("Stack print - " +s.arr[i]);
     } 
 }
